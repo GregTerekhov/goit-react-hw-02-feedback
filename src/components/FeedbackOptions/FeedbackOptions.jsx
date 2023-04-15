@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { ButtonsContainer, OptionsButton } from './FeedbackOptions.styled';
 
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  const optionKeys = Object.keys(options);
   return (
     <ButtonsContainer>
-      {optionKeys.map(option => (
+      {options.map(option => (
         <OptionsButton
           type="button"
           key={option}
@@ -20,10 +19,13 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      good: PropTypes.number.isRequired,
+      neutral: PropTypes.number.isRequired,
+      bad: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+
   onLeaveFeedback: PropTypes.func.isRequired,
 };
